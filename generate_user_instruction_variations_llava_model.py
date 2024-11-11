@@ -1,7 +1,7 @@
 from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
 import torch
 from PIL import Image
-import requests
+from utils.prompts import user_instruction_generation_prompt_v0
 
 processor = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf")
 
@@ -16,7 +16,7 @@ conversation = [
         "role": "user",
         "content": [
             {"type": "image"},
-            {"type": "text", "text": "If a person on an autonomous wheelchair is about to move forward and looks at the current scene, what kind of oral instructions might they give to the wheelchair? List 10 possible variations, and output in the format of a list like ['I wanan to go to a place to rest for 10 minutes.',...,'Circle around the curb.']"},
+            {"type": "text", "text":user_instruction_generation_prompt_v0},
         ],
     },
 ]
